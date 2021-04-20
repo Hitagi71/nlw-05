@@ -1,6 +1,8 @@
-import express, { request, response } from 'express';
+import express from 'express';
 
-const app = express()
+import "./database";
+import { routes } from './routes'
+
 
 /**
  *  GET = Buscas
@@ -10,16 +12,9 @@ const app = express()
  *  PATCH = Alterar um informação especifica
  */
 
-app.get("/", (request, response) => {
-    return response.json({
-        message: "Olá NLW 05!"
-    })
-})
+const app = express()
 
-app.post("/users", (request, response) => {
-    return response.json( {
-        message: "Usuário salvo com sucesso!"
-    })
-})
+app.use(express.json())
+app.use(routes)
 
 app.listen(8080, () => console.log("Server is running on port 8080"));
